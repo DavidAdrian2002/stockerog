@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin · Lucia Indumentaria</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-stone-100 text-stone-800 min-h-screen">
+
+<header class="bg-white border-b px-10 py-4 flex justify-between items-center">
+  <h1 class="text-lg font-semibold tracking-wide">Panel Administrador</h1>
+  <span class="text-sm text-stone-500">Lucia Indumentaria</span>
+</header>
+
+<main class="max-w-7xl mx-auto px-10 py-20">
+
+  <div class="mb-14">
+    <h2 class="text-4xl font-light mb-3">Marcas activas</h2>
+    <p class="text-stone-500">
+      Estas marcas están visibles actualmente en la tienda.
+    </p>
+  </div>
+
+  <!-- Nueva marca -->
+  <div class="mt-20 mb-16">
+    <a href="new-marca.html"
+      class="max-w-sm border-2 border-dashed border-stone-300 rounded-3xl p-10
+             flex items-center justify-center text-stone-400
+             hover:border-emerald-700 hover:text-emerald-700 transition cursor-pointer">
+      + Nueva marca
+    </a>
+  </div>
+
+  <!-- CONTENEDOR DINÁMICO -->
+  <div id="marcas-container" class="grid md:grid-cols-4 gap-6"></div>
+
+</main>
+
+
+<script>
+const container = document.getElementById("marcas-container");
+
+// Función para cargar todas las marcas
+async function cargarMarcas() {
+  try {
+    const res = await fetch("http://localhost:3000/api/marcas");
+    const marcas = await res.json();
+
+    container.innerHTML = "";
+
+    marcas.forEach(marca => {
+      container.innerHTML += `
+        <div class="bg-white rounded-3xl shadow p-6 flex flex-col items-center text-center">
+          
+          <img src="http://localhost:3000/uploads/${marca.imagen}"
+               class="h-20 object-contain mb-4"
+               onerror="this.src='https://via.placeholder.com/100'">
+
+          <h3 class="font-semibold text-lg mb-2">${marca.nombre}</h3>
+
+          <p class="text-sm text-stone-500 mb-4">
+            ${marca.descripcion || ""}
+          </p>
+
+          <div class="flex gap-3 mt-auto">
+
+            <a href="products.html?marcaId=${marca._id}"
+              class="text-sm bg-neutral-900 text-white px-4 py-2 rounded-xl">
+              Cargar stock
+            </a>
+
+           
+
+            <button onclick="eliminarMarca('${marca._id}')"
+              class="text-sm border border-red-500 text-red-500 px-4 py-2 rounded-xl
+                     hover:bg-red-500 hover:text-white transition">
+              Eliminar
+            </button>
+
+          </div>
+        </div>
+      `;
+    });
+
+  } catch (error) {
+    console.error("Error cargando marcas:", error);
+  }
+}
+
+// Función para eliminar marca
+async function eliminarMarca(id) {
+  const confirmar = confirm("¿Seguro que deseas eliminar esta marca?");
+  if (!confirmar) return;
+
+  try {
+    await fetch(`http://localhost:3000/api/marcas/${id}`, {
+      method: "DELETE"
+    });
+
+    cargarMarcas(); // Recarga la lista de marcas
+  } catch (error) {
+    console.error("Error eliminando marca:", error);
+    alert("Error eliminando la marca");
+  }
+}
+
+// Cargar marcas al iniciar
+cargarMarcas();
+</script>
+
+</body>
+</html>

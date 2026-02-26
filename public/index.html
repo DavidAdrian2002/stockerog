@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>SO</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-stone-100 text-stone-800 scroll-smooth">
+
+  <!-- Header -->
+  <header class="max-w-7xl mx-auto px-8 py-6 flex justify-between items-center">
+    <h1 class="text-2xl tracking-wide font-semibold">Stockerog</h1>
+
+    <nav class="space-x-6 text-sm uppercase tracking-wider">
+      <a href="#" class="hover:text-emerald-700 transition">Inicio</a>
+      <a href="#marcas" class="hover:text-emerald-700 transition">Marcas</a>
+      <a href="#contacto" class="hover:text-emerald-700 transition">Contacto</a>
+    </nav>
+  </header>
+
+  <!-- Hero / Scroll principal -->
+  <section class="max-w-7xl mx-auto px-8 py-20">
+    <div class="mb-12">
+      <h2 class="text-4xl font-light mb-4">Moda que se siente</h2>
+      <p class="text-stone-600 max-w-xl">
+        Selección cuidada de prendas y marcas que combinan diseño, calidad y comodidad.
+      </p>
+    </div>
+
+    <div class="flex space-x-8 overflow-x-auto pb-6 snap-x snap-mandatory">
+      <div class="min-w-[300px] md:min-w-[420px] snap-start">
+        <div class="rounded-3xl overflow-hidden shadow-lg">
+          <img src="../images/Scroll 1-1.jpg"
+               class="h-[420px] w-full object-cover hover:scale-105 transition duration-500">
+        </div>
+      </div>
+
+      <div class="min-w-[300px] md:min-w-[420px] snap-start">
+        <div class="rounded-3xl overflow-hidden shadow-lg">
+          <img src="../images/Scroll 2.jpg"
+               class="h-[420px] w-full object-cover hover:scale-105 transition duration-500">
+        </div>
+      </div>
+
+      <div class="min-w-[300px] md:min-w-[420px] snap-start">
+        <div class="rounded-3xl overflow-hidden shadow-lg">
+          <img src="../images/Scroll 3.jpg"
+               class="h-[420px] w-full object-cover hover:scale-105 transition duration-500">
+        </div>
+      </div>
+
+      <div class="min-w-[300px] md:min-w-[420px] snap-start">
+        <div class="rounded-3xl overflow-hidden shadow-lg">
+          <img src="../images/Scroll 4.jpg"
+               class="h-[420px] w-full object-cover hover:scale-105 transition duration-500">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Marcas -->
+  <section id="marcas" class="max-w-7xl mx-auto px-8 py-20">
+    <h3 class="text-3xl font-light mb-12">Marcas que trabajamos</h3>
+    <div id="marcas-container" class="grid grid-cols-2 md:grid-cols-4 gap-6 items-center"></div>
+  </section>
+
+  <!-- Info -->
+  <section class="bg-stone-200 py-20">
+    <div class="max-w-5xl mx-auto px-8 text-center">
+      <h3 class="text-3xl font-light mb-6">Las primeras marcas</h3>
+      <p class="text-stone-600 text-lg">
+        Trabajamos con las mejores marcas del mercado para ofrecerte productos de calidad y diseño exclusivo.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contacto -->
+  <section id="contacto" class="max-w-5xl mx-auto px-8 py-24">
+    
+    <div class="text-center mb-12">
+      <h3 class="text-3xl font-light mb-4">Contacto</h3>
+      <p class="text-stone-600">
+        ¿Tienes alguna consulta? Escríbenos directamente por WhatsApp.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-3xl shadow-xl p-10 max-w-2xl mx-auto">
+
+      <form id="contact-form" class="space-y-6">
+
+        <div>
+          <label class="block text-sm mb-2">Tu nombre</label>
+          <input type="text" id="nombre"
+                 class="w-full border border-stone-300 rounded-xl px-4 py-3
+                        focus:outline-none focus:ring-2 focus:ring-emerald-600"
+                 placeholder="Ej: María López"
+                 required>
+        </div>
+
+        <div>
+          <label class="block text-sm mb-2">Consulta rápida</label>
+          <select id="consulta"
+                  class="w-full border border-stone-300 rounded-xl px-4 py-3
+                         focus:outline-none focus:ring-2 focus:ring-emerald-600">
+            <option value="">Selecciona una opción</option>
+            <option value="¿Tienes este diseño disponible?">
+              ¿Tienes este diseño disponible?
+            </option>
+            <option value="¿Tienes este talle disponible?">
+              ¿Tienes este talle disponible?
+            </option>
+            <option value="¿Cuándo ingresan nuevos productos?">
+              ¿Cuándo ingresan nuevos productos?
+            </option>
+            <option value="¿Traerán más marcas próximamente?">
+              ¿Traerán más marcas próximamente?
+            </option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-sm mb-2">Mensaje</label>
+          <textarea id="mensaje"
+                    rows="4"
+                    class="w-full border border-stone-300 rounded-xl px-4 py-3
+                           focus:outline-none focus:ring-2 focus:ring-emerald-600"
+                    placeholder="Escribe tu mensaje aquí..."
+                    required></textarea>
+        </div>
+
+        <button type="submit"
+                class="w-full bg-emerald-700 text-white py-3 rounded-xl
+                       hover:bg-emerald-800 transition text-sm tracking-wider uppercase">
+          Enviar por WhatsApp
+        </button>
+
+      </form>
+    </div>
+  </section>
+
+  <script>
+  const container = document.getElementById("marcas-container");
+
+  async function cargarMarcas() {
+    try {
+      const res = await fetch("http://localhost:3000/api/marcas");
+      const marcas = await res.json();
+
+      container.innerHTML = "";
+
+     marcas.forEach(marca => {
+  container.innerHTML += `
+    <a href="page.html?marcaId=${marca._id}"
+       class="bg-white rounded-3xl shadow p-6 flex items-center justify-center
+              hover:shadow-xl transition text-center">
+               <img src="http://localhost:3000/uploads/${marca.imagen}"
+           class="h-20 object-contain"
+           onerror="this.src='https://via.placeholder.com/120'">
+
+      <span class="text-lg font-semibold tracking-wide">
+        ${marca.nombre}
+      </span>
+
+    </a>
+  `;
+});
+
+    } catch (error) {
+      console.error("Error cargando marcas:", error);
+    }
+  }
+
+  cargarMarcas();
+</script>
+
+  <!-- Footer -->
+  <footer class="py-10 text-center text-sm text-stone-500">
+    © 2026 Lucia Indumentaria
+  </footer>
+
+
+</body>
+</html>

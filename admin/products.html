@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestionar Productos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-stone-100 min-h-screen text-stone-800">
+
+<div class="max-w-7xl mx-auto px-10 py-16">
+
+  <div class="flex justify-between items-center mb-16">
+    <div>
+      <h1 class="text-3xl font-light tracking-wide">Productos</h1>
+      <p id="marca-nombre" class="text-sm text-stone-500 mt-2"></p>
+    </div>
+    <a href="admin.html" class="text-sm text-stone-500 hover:text-stone-800 transition">
+      ← Volver
+    </a>
+  </div>
+
+  <div class="flex justify-end mb-12">
+    <button onclick="abrirFormulario()"
+      class="bg-neutral-900 text-white px-6 py-3 rounded-xl hover:bg-neutral-800 transition text-sm tracking-wide">
+      + Agregar Producto
+    </button>
+  </div>
+
+  <!-- TABLA ADMIN -->
+  <div class="bg-white rounded-2xl shadow p-6">
+    <h2 class="text-lg font-medium mb-4">Listado de productos</h2>
+    <table class="w-full text-sm">
+      <thead class="border-b">
+        <tr class="text-left">
+          <th class="py-2">Imagen</th>
+          <th class="py-2">Nombre</th>
+          <th class="py-2">Talle</th>
+          <th class="py-2">Precio</th>
+          <th class="py-2">Stock</th>
+          <th class="py-2 text-right">Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="tabla-productos"></tbody>
+    </table>
+  </div>
+
+  <!-- FORM -->
+  <div id="form-container" class="hidden mt-16 bg-white rounded-3xl shadow-lg p-12">
+    <h2 class="text-xl font-medium mb-10">Nuevo Producto</h2>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <input id="prod-nombre" type="text" placeholder="Nombre"
+        class="border rounded-2xl px-5 py-4">
+
+      <input id="prod-talle" type="text" placeholder="Talle"
+        class="border rounded-2xl px-5 py-4">
+
+      <input id="prod-precio" type="number" placeholder="Precio"
+        class="border rounded-2xl px-5 py-4">
+
+      <input id="prod-stock" type="number" placeholder="Stock"
+        class="border rounded-2xl px-5 py-4">
+
+      <input id="prod-imagen" type="file" accept="image/*"
+        class="border rounded-2xl px-5 py-4 bg-white">
+    </div>
+
+    <textarea id="prod-descripcion" placeholder="Descripción"
+      class="w-full mt-8 border rounded-2xl px-5 py-4 h-32"></textarea>
+
+    <div class="flex justify-end mt-10 gap-4">
+      <button onclick="cerrarFormulario()"
+        class="px-6 py-3 border rounded-xl text-sm hover:bg-stone-100 transition">
+        Cancelar
+      </button>
+
+      <button onclick="guardarProducto()"
+        class="bg-neutral-900 text-white px-8 py-3 rounded-xl hover:bg-neutral-800 transition text-sm">
+        Guardar
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+
+const API = "http://localhost:3000/api";
+const urlParams = new URLSearchParams(window.location.search);
+const marcaId = urlParams.get("marcaId");
+
+document.addEventListener("DOMContentLoaded", () => {
+  if (!marcaId) {
+    alert("Marca no especificada");
+    return;
+  }
+
+  cargarMarca();
+  cargarProductos();
+});
+
+async function cargarMarca() {
+  const res = await fetch(`${API}/marcas/${marcaId}`);
+  const marca = await res.json();
+  document.getElementById("marca-nombre").textContent = marca.nombre;
+}
+
+async function cargarProductos() {
+  const res = await fetch(`${API}/productos/marca/${marcaId}`);
+  const productos = await res.json();
+
+  const tabla = document.getElementById("tabla-productos");
+  tabla.innerHTML = "";
+
+  productos.forEach(prod => {
+    tabla.innerHTML += `
+      <tr class="border-b">
+        <td class="py-3">
+          <img src="http://localhost:3000/images/${prod.imagen}" width="50">
+        </td>
+        <td>${prod.nombre}</td>
+        <td>${prod.talle}</td>
+        <td>$${prod.precio}</td>
+        <td>${prod.stock}</td>
+        <td class="text-right">
+          <button onclick="eliminarProducto('${prod._id}')"
+            class="text-red-500 hover:underline text-xs">
+            Eliminar
+          </button>
+        </td>
+      </tr>
+    `;
+  });
+}
+
+function abrirFormulario() {
+  document.getElementById("form-container").classList.remove("hidden");
+}
+
+function cerrarFormulario() {
+  document.getElementById("form-container").classList.add("hidden");
+}
+
+async function guardarProducto() {
+  const formData = new FormData();
+  formData.append("nombre", document.getElementById("prod-nombre").value);
+  formData.append("talle", document.getElementById("prod-talle").value);
+  formData.append("precio", document.getElementById("prod-precio").value);
+  formData.append("stock", document.getElementById("prod-stock").value);
+  formData.append("descripcion", document.getElementById("prod-descripcion").value);
+  formData.append("marcaId", marcaId);
+
+  const imagen = document.getElementById("prod-imagen").files[0];
+  if (imagen) formData.append("imagen", imagen);
+
+  await fetch(`${API}/productos`, {
+    method: "POST",
+    body: formData
+  });
+
+  cerrarFormulario();
+  cargarProductos();
+}
+
+async function eliminarProducto(id) {
+  if (!confirm("¿Eliminar producto?")) return;
+
+  await fetch(`${API}/productos/${id}`, {
+    method: "DELETE"
+  });
+
+  cargarProductos();
+}
+
+</script>
+
+</body>
+</html>

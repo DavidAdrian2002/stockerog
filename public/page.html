@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Marca</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-stone-100 text-stone-800">
+
+<header class="max-w-7xl mx-auto px-4 md:px-8 py-4 md:py-6 flex flex-col md:flex-row justify-between items-center gap-3">
+  <a href="index.html" class="text-sm text-stone-500 hover:text-emerald-700">
+    ← Volver
+  </a>
+  <h1 id="nombre-marca" class="text-xl md:text-2xl font-semibold tracking-wide text-center"></h1>
+</header>
+
+<section class="max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-16">
+  <div id="productos-container" class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-10"></div>
+</section>
+
+<!-- MODAL -->
+<div id="modal" class="fixed inset-0 bg-black/40 hidden items-end md:items-center justify-center z-50">
+
+  <div class="bg-white w-full md:max-w-md rounded-t-3xl md:rounded-3xl shadow-xl p-6 md:p-8 relative">
+
+    <button onclick="cerrarModal()"
+      class="absolute top-4 right-4 text-stone-400 hover:text-black text-xl">
+      ✕
+    </button>
+
+    <img id="modal-imagen" class="w-full h-52 md:h-64 object-cover rounded-xl mb-6">
+
+    <h2 id="modal-nombre" class="text-lg md:text-xl font-semibold mb-2"></h2>
+    <p id="modal-precio" class="text-base md:text-lg text-stone-600 mb-6"></p>
+
+    <button onclick="hacerPedido()"
+      class="w-full bg-neutral-900 text-white py-3 rounded-xl hover:bg-neutral-700 transition text-sm md:text-base">
+      Hacer Pedido
+    </button>
+
+  </div>
+</div>
+
+<script>
+const API = "http://localhost:3000/api";
+const urlParams = new URLSearchParams(window.location.search);
+const marcaId = urlParams.get("marcaId");
+
+let productoSeleccionado = null;
+
+document.addEventListener("DOMContentLoaded", () => {
+  if (!marcaId) {
+    alert("Marca no especificada");
+    return;
+  }
+
+  cargarMarca();
+  cargarProductos();
+});
+
+async function cargarMarca() {
+  const res = await fetch(`${API}/marcas/${marcaId}`);
+  const marca = await res.json();
+
+  document.getElementById("nombre-marca").textContent = marca.nombre;
+}
+
+async function cargarProductos() {
+  const res = await fetch(`${API}/productos/marca/${marcaId}`);
+  const productos = await res.json();
+
+  const container = document.getElementById("productos-container");
+  container.innerHTML = "";
+
+  productos.forEach(prod => {
+    container.innerHTML += `
+      <div onclick='abrirModal(${JSON.stringify(prod)})'
+           class="bg-white rounded-3xl shadow hover:shadow-lg transition cursor-pointer overflow-hidden">
+
+        <img src="http://localhost:3000/images/${prod.imagen}"
+             class="w-full h-48 object-cover">
+
+        <div class="p-4">
+          <h3 class="font-semibold text-sm mb-1">${prod.nombre}</h3>
+          <p class="text-stone-500 text-sm">$${prod.precio}</p>
+        </div>
+      </div>
+    `;
+  });
+}
+
+function abrirModal(producto) {
+  productoSeleccionado = producto;
+
+  document.getElementById("modal-imagen").src =
+    `http://localhost:3000/images/${producto.imagen}`;
+  document.getElementById("modal-nombre").textContent = producto.nombre;
+  document.getElementById("modal-precio").textContent =
+    "$" + producto.precio;
+
+  document.getElementById("modal").classList.remove("hidden");
+  document.getElementById("modal").classList.add("flex");
+}
+
+function cerrarModal() {
+  document.getElementById("modal").classList.add("hidden");
+  document.getElementById("modal").classList.remove("flex");
+}
+
+function hacerPedido() {
+  if (!productoSeleccionado) return;
+
+  const mensaje = `Hola, quiero el producto ${productoSeleccionado.nombre} por $${productoSeleccionado.precio}`;
+  const telefono = "549XXXXXXXXXX"; // ⚠️ CAMBIAR POR EL NÚMERO REAL
+
+  window.open(`https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`, "_blank");
+}
+</script>
+
+</body>
+</html>

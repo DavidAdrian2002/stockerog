@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Nueva Marca</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-neutral-100 min-h-screen">
+
+<div class="max-w-5xl mx-auto py-16 px-6">
+  <div class="bg-white rounded-3xl shadow-xl p-12">
+
+    <div class="flex justify-between items-center mb-14">
+      <div>
+        <h1 id="titulo-pagina" class="text-3xl font-semibold text-neutral-800 tracking-tight">
+          Nueva Marca
+        </h1>
+        <p class="text-sm text-neutral-500 mt-1">
+          Crea o edita una marca para la tienda
+        </p>
+      </div>
+
+      <a href="admin.html"
+         class="text-sm text-neutral-500 hover:text-neutral-800 transition">
+        ← Volver
+      </a>
+    </div>
+
+    <!-- FORM -->
+    <form id="marcaForm">
+
+      <div class="grid md:grid-cols-2 gap-14">
+
+        <div>
+          <div class="mb-8">
+            <label class="block text-sm font-medium text-neutral-600 mb-3">
+              Nombre de la marca
+            </label>
+            <input id="marca-nombre" type="text" required
+              class="w-full border border-neutral-300 rounded-2xl px-5 py-4">
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-neutral-600 mb-3">
+              Descripción
+            </label>
+            <textarea id="marca-descripcion"
+              class="w-full border border-neutral-300 rounded-2xl px-5 py-4 h-36 resize-none"></textarea>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-neutral-600 mb-4">
+            Logo
+          </label>
+
+          <div class="bg-neutral-50 border rounded-2xl p-8 flex flex-col items-center justify-center mb-6">
+            <img id="logo-preview" class="h-32 object-contain">
+          </div>
+
+          <input id="marca-logo" type="file"
+            class="block w-full text-sm text-neutral-600">
+        </div>
+
+      </div>
+
+      <div class="flex justify-end mt-14">
+        <button type="submit" id="submit-btn"
+          class="bg-neutral-900 text-white px-10 py-4 rounded-2xl">
+          Crear Marca
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById("marcaForm");
+  const logoInput = document.getElementById("marca-logo");
+  const logoPreview = document.getElementById("logo-preview");
+  const submitBtn = document.getElementById("submit-btn");
+  const tituloPagina = document.getElementById("titulo-pagina");
+
+  // Obtener ID de la marca si estamos en modo edición
+  const urlParams = new URLSearchParams(window.location.search);
+  const editarId = urlParams.get("editar");
+
+  // Preview del logo
+  logoInput.addEventListener("change", () => {
+    const file = logoInput.files[0];
+    if (file) {
+      logoPreview.src = URL.createObjectURL(file);
+    }
+  });
+
+  // Si estamos editando, cargamos los datos
+  if (editarId) {
+    tituloPagina.textContent = "Editar Marca";
+    submitBtn.textContent = "Guardar Cambios";
+
+    fetch(`http://localhost:3000/api/marcas/${editarId}`)
+      .then(res => res.json())
+      .then(marca => {
+        document.getElementById("marca-nombre").value = marca.nombre;
+        document.getElementById("marca-descripcion").value = marca.descripcion || "";
+        logoPreview.src = `http://localhost:3000/uploads/${marca.imagen}`;
+      })
+      .catch(err => console.error("Error cargando marca:", err));
+  }
+
+  // Crear o editar marca
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const nombre = document.getElementById("marca-nombre").value;
+    const descripcion = document.getElementById("marca-descripcion").value;
+    const logoFile = logoInput.files[0];
+    const imagen = logoFile ? logoFile.name : logoPreview.src.split("/").pop(); // si no cambió el logo, usamos el existente
+
+    try {
+      let res;
+      if (editarId) {
+        // Modo edición
+        res = await fetch(`http://localhost:3000/api/marcas/${editarId}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ nombre, descripcion, imagen })
+        });
+      } else {
+        // Modo creación
+        if (!logoFile) {
+          alert("Debes seleccionar un logo");
+          return;
+        }
+        res = await fetch("http://localhost:3000/api/marcas", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ nombre, descripcion, imagen })
+        });
+      }
+
+      const data = await res.json();
+      if (res.ok) {
+        alert(editarId ? "Marca actualizada ✅" : "Marca creada ✅");
+        window.location.href = "dashboard.html";
+      } else {
+        alert("Error al guardar marca ❌");
+        console.log(data);
+      }
+
+    } catch (error) {
+      console.error(error);
+      alert("Error de conexión ❌");
+    }
+  });
+</script>
+
+</body>
+</html>
