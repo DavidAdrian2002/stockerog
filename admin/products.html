@@ -2,21 +2,24 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gestionar Productos</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="bg-zinc-950 min-h-screen text-zinc-200">
 
-<div class="max-w-7xl mx-auto px-10 py-16">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-12 sm:py-16">
 
-  <!-- Header -->
-  <div class="flex justify-between items-center mb-16 border-b border-zinc-800 pb-6">
+  <!-- HEADER -->
+  <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center 
+              mb-12 sm:mb-16 border-b border-zinc-800 pb-6 gap-6">
+
     <div>
-      <h1 class="text-3xl font-light tracking-wider text-white uppercase">
+      <h1 class="text-2xl sm:text-3xl font-light tracking-wider text-white uppercase">
         Productos
       </h1>
-      <p id="marca-nombre" class="text-sm text-zinc-400 mt-2 tracking-wide"></p>
+      <p id="marca-nombre" class="text-xs sm:text-sm text-zinc-400 mt-2 tracking-wide"></p>
     </div>
 
     <a href="admin.html"
@@ -25,71 +28,87 @@
     </a>
   </div>
 
-  <!-- Botón agregar -->
-  <div class="flex justify-end mb-12">
+  <!-- BOTÓN AGREGAR -->
+  <div class="flex justify-end mb-10 sm:mb-12">
     <button onclick="abrirFormulario()"
-      class="bg-amber-500 text-black px-6 py-3 rounded-xl
+      class="w-full sm:w-auto
+             bg-amber-500 text-black
+             px-6 py-3 rounded-xl
              hover:bg-amber-600 transition
-             text-sm tracking-widest uppercase font-semibold">
+             text-xs sm:text-sm tracking-widest uppercase font-semibold">
       + Agregar Producto
     </button>
   </div>
 
-  <!-- TABLA ADMIN -->
-  <div class="bg-zinc-900 rounded-2xl shadow-2xl shadow-black/40 border border-zinc-800 p-6">
+  <!-- TABLA -->
+  <div class="bg-zinc-900 rounded-2xl shadow-2xl shadow-black/40 
+              border border-zinc-800 p-4 sm:p-6">
 
-    <h2 class="text-lg font-medium mb-6 text-white tracking-wide">
+    <h2 class="text-base sm:text-lg font-medium mb-6 text-white tracking-wide">
       Listado de productos
     </h2>
 
-    <table class="w-full text-sm">
-      <thead class="border-b border-zinc-800 text-zinc-400 uppercase tracking-wider text-xs">
-        <tr class="text-left">
-          <th class="py-3">Imagen</th>
-          <th class="py-3">Nombre</th>
-          <th class="py-3">Talle</th>
-          <th class="py-3">Precio</th>
-          <th class="py-3">Stock</th>
-          <th class="py-3 text-right">Acciones</th>
-        </tr>
-      </thead>
+    <!-- Scroll horizontal para móvil -->
+    <div class="overflow-x-auto">
 
-      <tbody id="tabla-productos"
-             class="divide-y divide-zinc-800">
-      </tbody>
-    </table>
+      <table class="min-w-[700px] w-full text-sm">
 
+        <thead class="border-b border-zinc-800 text-zinc-400 uppercase tracking-wider text-xs">
+          <tr class="text-left">
+            <th class="py-3">Imagen</th>
+            <th class="py-3">Nombre</th>
+            <th class="py-3">Talle</th>
+            <th class="py-3">Precio</th>
+            <th class="py-3">Stock</th>
+            <th class="py-3 text-right">Acciones</th>
+          </tr>
+        </thead>
+
+        <tbody id="tabla-productos"
+               class="divide-y divide-zinc-800">
+        </tbody>
+
+      </table>
+
+    </div>
   </div>
 
   <!-- FORM -->
   <div id="form-container"
-       class="hidden mt-16 bg-zinc-900 rounded-2xl shadow-2xl shadow-black/50
-              border border-zinc-800 p-12">
+       class="hidden mt-12 sm:mt-16
+              bg-zinc-900 rounded-2xl shadow-2xl shadow-black/50
+              border border-zinc-800
+              p-6 sm:p-10 lg:p-12">
 
-    <h2 class="text-xl font-medium mb-10 text-white tracking-wide uppercase">
+    <h2 class="text-lg sm:text-xl font-medium mb-8 sm:mb-10 text-white tracking-wide uppercase">
       Nuevo Producto
     </h2>
 
-    <div class="grid md:grid-cols-2 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
 
       <input id="prod-nombre" type="text" placeholder="Nombre"
-        class="bg-zinc-800 border border-zinc-700 rounded-xl px-5 py-4 text-white
+        class="bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-3
+               text-white text-sm sm:text-base
                focus:outline-none focus:ring-2 focus:ring-amber-500 transition">
 
       <input id="prod-talle" type="text" placeholder="Talle"
-        class="bg-zinc-800 border border-zinc-700 rounded-xl px-5 py-4 text-white
+        class="bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-3
+               text-white text-sm sm:text-base
                focus:outline-none focus:ring-2 focus:ring-amber-500 transition">
 
       <input id="prod-precio" type="number" placeholder="Precio"
-        class="bg-zinc-800 border border-zinc-700 rounded-xl px-5 py-4 text-white
+        class="bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-3
+               text-white text-sm sm:text-base
                focus:outline-none focus:ring-2 focus:ring-amber-500 transition">
 
       <input id="prod-stock" type="number" placeholder="Stock"
-        class="bg-zinc-800 border border-zinc-700 rounded-xl px-5 py-4 text-white
+        class="bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-3
+               text-white text-sm sm:text-base
                focus:outline-none focus:ring-2 focus:ring-amber-500 transition">
 
       <input id="prod-imagen" type="file" accept="image/*"
-        class="bg-zinc-800 border border-zinc-700 rounded-xl px-5 py-4 text-zinc-400
+        class="bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-3
+               text-xs sm:text-sm text-zinc-400
                file:bg-amber-500 file:text-black
                file:border-0 file:px-4 file:py-2
                file:rounded-lg file:cursor-pointer
@@ -97,22 +116,27 @@
     </div>
 
     <textarea id="prod-descripcion" placeholder="Descripción"
-      class="w-full mt-8 bg-zinc-800 border border-zinc-700 rounded-xl
-             px-5 py-4 h-32 text-white
+      class="w-full mt-6 sm:mt-8 bg-zinc-800 border border-zinc-700 rounded-xl
+             px-4 py-3 h-28 sm:h-32 text-white text-sm sm:text-base
              focus:outline-none focus:ring-2 focus:ring-amber-500 transition">
     </textarea>
 
-    <div class="flex justify-end mt-10 gap-4">
+    <div class="flex flex-col sm:flex-row justify-end mt-8 sm:mt-10 gap-4">
 
       <button onclick="cerrarFormulario()"
-        class="px-6 py-3 border border-zinc-700 rounded-xl text-sm
-               text-zinc-400 hover:bg-zinc-800 hover:text-white transition">
+        class="w-full sm:w-auto
+               px-6 py-3 border border-zinc-700 rounded-xl
+               text-xs sm:text-sm text-zinc-400
+               hover:bg-zinc-800 hover:text-white transition">
         Cancelar
       </button>
 
       <button onclick="guardarProducto()"
-        class="bg-amber-500 text-black px-8 py-3 rounded-xl
-               hover:bg-amber-600 transition text-sm
+        class="w-full sm:w-auto
+               bg-amber-500 text-black
+               px-8 py-3 rounded-xl
+               hover:bg-amber-600 transition
+               text-xs sm:text-sm
                tracking-widest uppercase font-semibold">
         Guardar
       </button>

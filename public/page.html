@@ -2,69 +2,85 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Marca</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="bg-zinc-950 text-zinc-200">
 
-<header class="max-w-7xl mx-auto px-4 md:px-8 py-4 md:py-6 
-               flex flex-col md:flex-row justify-between items-center gap-3 
+<!-- HEADER -->
+<header class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5
+               flex flex-col sm:flex-row justify-between items-center gap-3
                border-b border-zinc-800">
 
-  <a href="index.html" 
+  <a href="index.html"
      class="text-sm text-zinc-400 hover:text-amber-500 transition tracking-wide">
     ← Volver
   </a>
 
-  <h1 id="nombre-marca" 
-      class="text-xl md:text-2xl font-semibold tracking-wider text-center text-white">
+  <h1 id="nombre-marca"
+      class="text-xl sm:text-2xl font-semibold tracking-wider text-center text-white">
   </h1>
 
 </header>
 
-<section class="max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-16">
-  <div id="productos-container" 
-       class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-10">
+<!-- PRODUCTOS -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+
+  <div id="productos-container"
+       class="grid 
+              grid-cols-2 
+              sm:grid-cols-3 
+              lg:grid-cols-4 
+              gap-4 sm:gap-6 lg:gap-10">
   </div>
+
 </section>
 
 <!-- MODAL -->
-<div id="modal" 
-     class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden 
-            items-end md:items-center justify-center z-50">
+<div id="modal"
+     class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden
+            items-end sm:items-center justify-center
+            z-50 p-4">
 
-  <div class="bg-zinc-900 w-full md:max-w-md 
-              rounded-t-3xl md:rounded-2xl 
-              shadow-2xl shadow-black/50 
+  <div class="bg-zinc-900 w-full sm:max-w-md
+              rounded-t-3xl sm:rounded-2xl
+              shadow-2xl shadow-black/50
               border border-zinc-800
-              p-6 md:p-8 relative">
+              p-6 sm:p-8 relative
+              animate-slideUp">
 
+    <!-- Close -->
     <button onclick="cerrarModal()"
       class="absolute top-4 right-4 text-zinc-500 hover:text-amber-500 text-xl transition">
       ✕
     </button>
 
-    <img id="modal-imagen" 
-         class="w-full h-52 md:h-64 object-cover rounded-xl mb-6">
+    <!-- Imagen -->
+    <img id="modal-imagen"
+         class="w-full h-48 sm:h-64 object-cover rounded-xl mb-6">
 
-    <h2 id="modal-nombre" 
-        class="text-lg md:text-xl font-semibold mb-2 text-white tracking-wide">
+    <!-- Nombre -->
+    <h2 id="modal-nombre"
+        class="text-lg sm:text-xl font-semibold mb-2 text-white tracking-wide">
     </h2>
 
-    <p id="modal-precio" 
-       class="text-base md:text-lg text-zinc-400 mb-6">
+    <!-- Precio -->
+    <p id="modal-precio"
+       class="text-base sm:text-lg text-zinc-400 mb-6">
     </p>
 
+    <!-- Botón -->
     <button onclick="hacerPedido()"
-      class="w-full bg-amber-500 text-black py-3 rounded-xl 
-             hover:bg-amber-600 transition 
-             text-sm md:text-base tracking-widest uppercase font-semibold">
+      class="w-full bg-amber-500 text-black py-3 rounded-xl
+             hover:bg-amber-600 transition
+             text-xs sm:text-sm tracking-widest uppercase font-semibold">
       Hacer Pedido
     </button>
 
   </div>
-</div>v
+</div>
 
 <script>
 const API = "http://localhost:3000/api";

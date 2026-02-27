@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SO</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -9,135 +10,136 @@
 <body class="bg-zinc-950 text-zinc-200 scroll-smooth">
 
   <!-- Header -->
-  <header class="max-w-7xl mx-auto px-8 py-6 flex justify-between items-center border-b border-zinc-800">
-    <h1 class="text-2xl tracking-wider font-semibold text-white">Stockerog</h1>
+  <header class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex justify-between items-center border-b border-zinc-800">
+    <h1 class="text-xl sm:text-2xl tracking-wider font-semibold text-white">
+      Stockerog
+    </h1>
 
-    <nav class="space-x-6 text-sm uppercase tracking-widest">
+    <!-- Nav desktop -->
+    <nav class="hidden md:flex space-x-8 text-xs uppercase tracking-widest">
       <a href="#" class="hover:text-amber-500 transition">Inicio</a>
       <a href="#marcas" class="hover:text-amber-500 transition">Marcas</a>
       <a href="#contacto" class="hover:text-amber-500 transition">Contacto</a>
     </nav>
   </header>
 
-  <!-- Hero / Scroll principal -->
-  <section class="max-w-7xl mx-auto px-8 py-20">
-    <div class="mb-12">
-      <h2 class="text-4xl md:text-5xl font-light mb-4 text-white">
+  <!-- Hero -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+    
+    <div class="mb-10 sm:mb-14">
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-light mb-4 text-white leading-tight">
         Streetwear que impone presencia
       </h2>
-      <p class="text-zinc-400 max-w-xl text-lg">
+      <p class="text-zinc-400 max-w-xl text-base sm:text-lg">
         Selección exclusiva de marcas urbanas que combinan actitud, diseño y calidad premium.
       </p>
     </div>
 
-    <div class="flex space-x-8 overflow-x-auto pb-6 snap-x snap-mandatory">
-      <div class="min-w-[300px] md:min-w-[420px] snap-start">
+    <!-- Scroll horizontal -->
+    <div class="flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory scrollbar-hide">
+
+      <div class="min-w-[260px] sm:min-w-[300px] md:min-w-[420px] snap-start">
         <div class="rounded-2xl overflow-hidden shadow-2xl shadow-black/40">
           <img src="../images/Scroll 1-1.jpg"
-               class="h-[420px] w-full object-cover hover:scale-105 transition duration-500">
+               class="h-[300px] sm:h-[380px] md:h-[420px] w-full object-cover hover:scale-105 transition duration-500">
         </div>
       </div>
 
-      <div class="min-w-[300px] md:min-w-[420px] snap-start">
+      <div class="min-w-[260px] sm:min-w-[300px] md:min-w-[420px] snap-start">
         <div class="rounded-2xl overflow-hidden shadow-2xl shadow-black/40">
           <img src="../images/Scroll 2.jpg"
-               class="h-[420px] w-full object-cover hover:scale-105 transition duration-500">
+               class="h-[300px] sm:h-[380px] md:h-[420px] w-full object-cover hover:scale-105 transition duration-500">
         </div>
       </div>
 
-      <div class="min-w-[300px] md:min-w-[420px] snap-start">
+      <div class="min-w-[260px] sm:min-w-[300px] md:min-w-[420px] snap-start">
         <div class="rounded-2xl overflow-hidden shadow-2xl shadow-black/40">
           <img src="../images/Scroll 3.jpg"
-               class="h-[420px] w-full object-cover hover:scale-105 transition duration-500">
+               class="h-[300px] sm:h-[380px] md:h-[420px] w-full object-cover hover:scale-105 transition duration-500">
         </div>
       </div>
 
-      <div class="min-w-[300px] md:min-w-[420px] snap-start">
+      <div class="min-w-[260px] sm:min-w-[300px] md:min-w-[420px] snap-start">
         <div class="rounded-2xl overflow-hidden shadow-2xl shadow-black/40">
           <img src="../images/Scroll 4.jpg"
-               class="h-[420px] w-full object-cover hover:scale-105 transition duration-500">
+               class="h-[300px] sm:h-[380px] md:h-[420px] w-full object-cover hover:scale-105 transition duration-500">
         </div>
       </div>
+
     </div>
   </section>
 
   <!-- Marcas -->
-  <section id="marcas" class="max-w-7xl mx-auto px-8 py-20 border-t border-zinc-800">
-    <h3 class="text-3xl font-light mb-12 text-white tracking-wide">
+  <section id="marcas" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 border-t border-zinc-800">
+    <h3 class="text-2xl sm:text-3xl font-light mb-10 sm:mb-12 text-white tracking-wide">
       Marcas que trabajamos
     </h3>
-    <div id="marcas-container" class="grid grid-cols-2 md:grid-cols-4 gap-6 items-center"></div>
+
+    <div id="marcas-container"
+         class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 items-center">
+    </div>
   </section>
 
   <!-- Info -->
-  <section class="bg-zinc-900 py-20 border-t border-zinc-800">
-    <div class="max-w-5xl mx-auto px-8 text-center">
-      <h3 class="text-3xl font-light mb-6 text-white">
+  <section class="bg-zinc-900 py-16 sm:py-20 border-t border-zinc-800">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h3 class="text-2xl sm:text-3xl font-light mb-6 text-white">
         Calidad sin concesiones
       </h3>
-      <p class="text-zinc-400 text-lg">
+      <p class="text-zinc-400 text-base sm:text-lg">
         Trabajamos con marcas que marcan tendencia y elevan tu estilo urbano.
       </p>
     </div>
   </section>
 
   <!-- Contacto -->
-  <section id="contacto" class="max-w-5xl mx-auto px-8 py-24">
-    
-    <div class="text-center mb-12">
-      <h3 class="text-3xl font-light mb-4 text-white">Contacto</h3>
-      <p class="text-zinc-400">
+  <section id="contacto" class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+
+    <div class="text-center mb-10 sm:mb-12">
+      <h3 class="text-2xl sm:text-3xl font-light mb-4 text-white">Contacto</h3>
+      <p class="text-zinc-400 text-sm sm:text-base">
         ¿Tienes alguna consulta? Escríbenos directamente por WhatsApp.
       </p>
     </div>
 
-    <div class="bg-zinc-900 rounded-2xl shadow-2xl shadow-black/40 p-10 max-w-2xl mx-auto border border-zinc-800">
+    <div class="bg-zinc-900 rounded-2xl shadow-2xl shadow-black/40 p-6 sm:p-10 max-w-2xl mx-auto border border-zinc-800">
 
       <form id="contact-form" class="space-y-6">
 
         <div>
           <label class="block text-sm mb-2 text-zinc-300">Tu nombre</label>
-          <input type="text" id="nombre"
+          <input type="text"
                  class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-3
-                        focus:outline-none focus:ring-2 focus:ring-amber-500 text-white"
+                        focus:outline-none focus:ring-2 focus:ring-amber-500 text-white text-sm sm:text-base"
                  placeholder="Ej: Juan Pérez"
                  required>
         </div>
 
         <div>
           <label class="block text-sm mb-2 text-zinc-300">Consulta rápida</label>
-          <select id="consulta"
+          <select
                   class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-3
-                         focus:outline-none focus:ring-2 focus:ring-amber-500 text-white">
+                         focus:outline-none focus:ring-2 focus:ring-amber-500 text-white text-sm sm:text-base">
             <option value="">Selecciona una opción</option>
-            <option value="¿Tienes este diseño disponible?">
-              ¿Tienes este diseño disponible?
-            </option>
-            <option value="¿Tienes este talle disponible?">
-              ¿Tienes este talle disponible?
-            </option>
-            <option value="¿Cuándo ingresan nuevos productos?">
-              ¿Cuándo ingresan nuevos productos?
-            </option>
-            <option value="¿Traerán más marcas próximamente?">
-              ¿Traerán más marcas próximamente?
-            </option>
+            <option>¿Tienes este diseño disponible?</option>
+            <option>¿Tienes este talle disponible?</option>
+            <option>¿Cuándo ingresan nuevos productos?</option>
+            <option>¿Traerán más marcas próximamente?</option>
           </select>
         </div>
 
         <div>
           <label class="block text-sm mb-2 text-zinc-300">Mensaje</label>
-          <textarea id="mensaje"
-                    rows="4"
+          <textarea rows="4"
                     class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-3
-                           focus:outline-none focus:ring-2 focus:ring-amber-500 text-white"
+                           focus:outline-none focus:ring-2 focus:ring-amber-500 text-white text-sm sm:text-base"
                     placeholder="Escribe tu mensaje aquí..."
                     required></textarea>
         </div>
 
         <button type="submit"
                 class="w-full bg-amber-500 text-black py-3 rounded-xl
-                       hover:bg-amber-600 transition text-sm tracking-widest uppercase font-semibold">
+                       hover:bg-amber-600 transition text-xs sm:text-sm tracking-widest uppercase font-semibold">
           Enviar por WhatsApp
         </button>
 
