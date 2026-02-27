@@ -152,7 +152,7 @@
 
   async function cargarMarcas() {
     try {
-      const res = await fetch("http://localhost:3000/api/marcas");
+      const res = await fetch("http:/api/marcas");
       const marcas = await res.json();
 
       container.innerHTML = "";
@@ -162,7 +162,7 @@
     <a href="page.html?marcaId=${marca._id}"
        class="bg-white rounded-3xl shadow p-6 flex items-center justify-center
               hover:shadow-xl transition text-center">
-               <img src="http://localhost:3000/uploads/${marca.imagen}"
+               <img src="http:/uploads/${marca.imagen}"
            class="h-20 object-contain"
            onerror="this.src='https://via.placeholder.com/120'">
 
