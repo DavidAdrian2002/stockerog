@@ -182,9 +182,30 @@
   cargarMarcas();
 </script>
 
+<script>
+  const form = document.getElementById("contact-form");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const nombre = form.querySelector("input[type='text']").value;
+    const consulta = form.querySelector("select").value;
+    const mensaje = form.querySelector("textarea").value;
+
+    const numero = "5493863573899"; // Código país Argentina +54 + 9 + número
+
+    const texto = `Hola, mi nombre es ${nombre}.
+Consulta: ${consulta || "No especificada"}
+Mensaje: ${mensaje}`;
+
+    const url = `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
+
+    window.open(url, "_blank");
+  });
+</script>
   <!-- Footer -->
   <footer class="py-10 text-center text-sm text-stone-500">
-    © 2026 Lucia Indumentaria
+    © 2026 D&A Development. Todos los derechos reservados.
   </footer>
 
 
