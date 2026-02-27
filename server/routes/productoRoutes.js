@@ -5,7 +5,7 @@ import upload from "../middleware/upload.js";
 const router = express.Router();
 
 
-// ✅ Crear producto con imagen
+
 router.post("/", upload.single("imagen"), async (req, res) => {
   try {
     const { marcaId, nombre, precio, stock, talle, descripcion } = req.body;
@@ -30,8 +30,22 @@ router.post("/", upload.single("imagen"), async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  try {
+    const producto = await Producto.findById(req.params.id);
 
-// ✅ Obtener productos por marca
+    if (!producto) {
+      return res.status(404).json({ message: "Producto no encontrado" });
+    }
+
+    res.json(producto);
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error obteniendo producto" });
+  }
+});
+
 router.get("/marca/:marcaId", async (req, res) => {
   try {
     const productos = await Producto.find({
@@ -47,7 +61,7 @@ router.get("/marca/:marcaId", async (req, res) => {
 });
 
 
-// ✅ Eliminar producto
+
 router.delete("/:id", async (req, res) => {
   try {
     await Producto.findByIdAndDelete(req.params.id);
@@ -56,6 +70,39 @@ router.delete("/:id", async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error eliminando producto" });
+  }
+});
+
+
+router.put("/:id", upload.single("imagen"), async (req, res) => {
+  try {
+    const { nombre, precio, stock, talle, descripcion } = req.body;
+
+    const producto = await Producto.findById(req.params.id);
+
+    if (!producto) {
+      return res.status(404).json({ message: "Producto no encontrado" });
+    }
+
+    // Actualizar campos
+    producto.nombre = nombre;
+    producto.precio = precio;
+    producto.stock = stock;
+    producto.talle = talle;
+    producto.descripcion = descripcion;
+
+    // Si se sube nueva imagen, actualizar
+    if (req.file) {
+      producto.imagen = req.file.filename;
+    }
+
+    await producto.save();
+
+    res.json(producto);
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error actualizando producto" });
   }
 });
 

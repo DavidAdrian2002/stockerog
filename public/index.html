@@ -6,52 +6,54 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-stone-100 text-stone-800 scroll-smooth">
+<body class="bg-zinc-950 text-zinc-200 scroll-smooth">
 
   <!-- Header -->
-  <header class="max-w-7xl mx-auto px-8 py-6 flex justify-between items-center">
-    <h1 class="text-2xl tracking-wide font-semibold">Stockerog</h1>
+  <header class="max-w-7xl mx-auto px-8 py-6 flex justify-between items-center border-b border-zinc-800">
+    <h1 class="text-2xl tracking-wider font-semibold text-white">Stockerog</h1>
 
-    <nav class="space-x-6 text-sm uppercase tracking-wider">
-      <a href="#" class="hover:text-emerald-700 transition">Inicio</a>
-      <a href="#marcas" class="hover:text-emerald-700 transition">Marcas</a>
-      <a href="#contacto" class="hover:text-emerald-700 transition">Contacto</a>
+    <nav class="space-x-6 text-sm uppercase tracking-widest">
+      <a href="#" class="hover:text-amber-500 transition">Inicio</a>
+      <a href="#marcas" class="hover:text-amber-500 transition">Marcas</a>
+      <a href="#contacto" class="hover:text-amber-500 transition">Contacto</a>
     </nav>
   </header>
 
   <!-- Hero / Scroll principal -->
   <section class="max-w-7xl mx-auto px-8 py-20">
     <div class="mb-12">
-      <h2 class="text-4xl font-light mb-4">Moda que se siente</h2>
-      <p class="text-stone-600 max-w-xl">
-        Selección cuidada de prendas y marcas que combinan diseño, calidad y comodidad.
+      <h2 class="text-4xl md:text-5xl font-light mb-4 text-white">
+        Streetwear que impone presencia
+      </h2>
+      <p class="text-zinc-400 max-w-xl text-lg">
+        Selección exclusiva de marcas urbanas que combinan actitud, diseño y calidad premium.
       </p>
     </div>
 
     <div class="flex space-x-8 overflow-x-auto pb-6 snap-x snap-mandatory">
       <div class="min-w-[300px] md:min-w-[420px] snap-start">
-        <div class="rounded-3xl overflow-hidden shadow-lg">
+        <div class="rounded-2xl overflow-hidden shadow-2xl shadow-black/40">
           <img src="../images/Scroll 1-1.jpg"
                class="h-[420px] w-full object-cover hover:scale-105 transition duration-500">
         </div>
       </div>
 
       <div class="min-w-[300px] md:min-w-[420px] snap-start">
-        <div class="rounded-3xl overflow-hidden shadow-lg">
+        <div class="rounded-2xl overflow-hidden shadow-2xl shadow-black/40">
           <img src="../images/Scroll 2.jpg"
                class="h-[420px] w-full object-cover hover:scale-105 transition duration-500">
         </div>
       </div>
 
       <div class="min-w-[300px] md:min-w-[420px] snap-start">
-        <div class="rounded-3xl overflow-hidden shadow-lg">
+        <div class="rounded-2xl overflow-hidden shadow-2xl shadow-black/40">
           <img src="../images/Scroll 3.jpg"
                class="h-[420px] w-full object-cover hover:scale-105 transition duration-500">
         </div>
       </div>
 
       <div class="min-w-[300px] md:min-w-[420px] snap-start">
-        <div class="rounded-3xl overflow-hidden shadow-lg">
+        <div class="rounded-2xl overflow-hidden shadow-2xl shadow-black/40">
           <img src="../images/Scroll 4.jpg"
                class="h-[420px] w-full object-cover hover:scale-105 transition duration-500">
         </div>
@@ -60,17 +62,21 @@
   </section>
 
   <!-- Marcas -->
-  <section id="marcas" class="max-w-7xl mx-auto px-8 py-20">
-    <h3 class="text-3xl font-light mb-12">Marcas que trabajamos</h3>
+  <section id="marcas" class="max-w-7xl mx-auto px-8 py-20 border-t border-zinc-800">
+    <h3 class="text-3xl font-light mb-12 text-white tracking-wide">
+      Marcas que trabajamos
+    </h3>
     <div id="marcas-container" class="grid grid-cols-2 md:grid-cols-4 gap-6 items-center"></div>
   </section>
 
   <!-- Info -->
-  <section class="bg-stone-200 py-20">
+  <section class="bg-zinc-900 py-20 border-t border-zinc-800">
     <div class="max-w-5xl mx-auto px-8 text-center">
-      <h3 class="text-3xl font-light mb-6">Las primeras marcas</h3>
-      <p class="text-stone-600 text-lg">
-        Trabajamos con las mejores marcas del mercado para ofrecerte productos de calidad y diseño exclusivo.
+      <h3 class="text-3xl font-light mb-6 text-white">
+        Calidad sin concesiones
+      </h3>
+      <p class="text-zinc-400 text-lg">
+        Trabajamos con marcas que marcan tendencia y elevan tu estilo urbano.
       </p>
     </div>
   </section>
@@ -79,30 +85,30 @@
   <section id="contacto" class="max-w-5xl mx-auto px-8 py-24">
     
     <div class="text-center mb-12">
-      <h3 class="text-3xl font-light mb-4">Contacto</h3>
-      <p class="text-stone-600">
+      <h3 class="text-3xl font-light mb-4 text-white">Contacto</h3>
+      <p class="text-zinc-400">
         ¿Tienes alguna consulta? Escríbenos directamente por WhatsApp.
       </p>
     </div>
 
-    <div class="bg-white rounded-3xl shadow-xl p-10 max-w-2xl mx-auto">
+    <div class="bg-zinc-900 rounded-2xl shadow-2xl shadow-black/40 p-10 max-w-2xl mx-auto border border-zinc-800">
 
       <form id="contact-form" class="space-y-6">
 
         <div>
-          <label class="block text-sm mb-2">Tu nombre</label>
+          <label class="block text-sm mb-2 text-zinc-300">Tu nombre</label>
           <input type="text" id="nombre"
-                 class="w-full border border-stone-300 rounded-xl px-4 py-3
-                        focus:outline-none focus:ring-2 focus:ring-emerald-600"
-                 placeholder="Ej: María López"
+                 class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-3
+                        focus:outline-none focus:ring-2 focus:ring-amber-500 text-white"
+                 placeholder="Ej: Juan Pérez"
                  required>
         </div>
 
         <div>
-          <label class="block text-sm mb-2">Consulta rápida</label>
+          <label class="block text-sm mb-2 text-zinc-300">Consulta rápida</label>
           <select id="consulta"
-                  class="w-full border border-stone-300 rounded-xl px-4 py-3
-                         focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                  class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-3
+                         focus:outline-none focus:ring-2 focus:ring-amber-500 text-white">
             <option value="">Selecciona una opción</option>
             <option value="¿Tienes este diseño disponible?">
               ¿Tienes este diseño disponible?
@@ -120,18 +126,18 @@
         </div>
 
         <div>
-          <label class="block text-sm mb-2">Mensaje</label>
+          <label class="block text-sm mb-2 text-zinc-300">Mensaje</label>
           <textarea id="mensaje"
                     rows="4"
-                    class="w-full border border-stone-300 rounded-xl px-4 py-3
-                           focus:outline-none focus:ring-2 focus:ring-emerald-600"
+                    class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-3
+                           focus:outline-none focus:ring-2 focus:ring-amber-500 text-white"
                     placeholder="Escribe tu mensaje aquí..."
                     required></textarea>
         </div>
 
         <button type="submit"
-                class="w-full bg-emerald-700 text-white py-3 rounded-xl
-                       hover:bg-emerald-800 transition text-sm tracking-wider uppercase">
+                class="w-full bg-amber-500 text-black py-3 rounded-xl
+                       hover:bg-amber-600 transition text-sm tracking-widest uppercase font-semibold">
           Enviar por WhatsApp
         </button>
 

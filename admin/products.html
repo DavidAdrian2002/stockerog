@@ -6,89 +6,131 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-stone-100 min-h-screen text-stone-800">
+<body class="bg-zinc-950 min-h-screen text-zinc-200">
 
 <div class="max-w-7xl mx-auto px-10 py-16">
 
-  <div class="flex justify-between items-center mb-16">
+  <!-- Header -->
+  <div class="flex justify-between items-center mb-16 border-b border-zinc-800 pb-6">
     <div>
-      <h1 class="text-3xl font-light tracking-wide">Productos</h1>
-      <p id="marca-nombre" class="text-sm text-stone-500 mt-2"></p>
+      <h1 class="text-3xl font-light tracking-wider text-white uppercase">
+        Productos
+      </h1>
+      <p id="marca-nombre" class="text-sm text-zinc-400 mt-2 tracking-wide"></p>
     </div>
-    <a href="admin.html" class="text-sm text-stone-500 hover:text-stone-800 transition">
+
+    <a href="admin.html"
+       class="text-sm text-zinc-400 hover:text-amber-500 transition tracking-wide">
       ← Volver
     </a>
   </div>
 
+  <!-- Botón agregar -->
   <div class="flex justify-end mb-12">
     <button onclick="abrirFormulario()"
-      class="bg-neutral-900 text-white px-6 py-3 rounded-xl hover:bg-neutral-800 transition text-sm tracking-wide">
+      class="bg-amber-500 text-black px-6 py-3 rounded-xl
+             hover:bg-amber-600 transition
+             text-sm tracking-widest uppercase font-semibold">
       + Agregar Producto
     </button>
   </div>
 
   <!-- TABLA ADMIN -->
-  <div class="bg-white rounded-2xl shadow p-6">
-    <h2 class="text-lg font-medium mb-4">Listado de productos</h2>
+  <div class="bg-zinc-900 rounded-2xl shadow-2xl shadow-black/40 border border-zinc-800 p-6">
+
+    <h2 class="text-lg font-medium mb-6 text-white tracking-wide">
+      Listado de productos
+    </h2>
+
     <table class="w-full text-sm">
-      <thead class="border-b">
+      <thead class="border-b border-zinc-800 text-zinc-400 uppercase tracking-wider text-xs">
         <tr class="text-left">
-          <th class="py-2">Imagen</th>
-          <th class="py-2">Nombre</th>
-          <th class="py-2">Talle</th>
-          <th class="py-2">Precio</th>
-          <th class="py-2">Stock</th>
-          <th class="py-2 text-right">Acciones</th>
+          <th class="py-3">Imagen</th>
+          <th class="py-3">Nombre</th>
+          <th class="py-3">Talle</th>
+          <th class="py-3">Precio</th>
+          <th class="py-3">Stock</th>
+          <th class="py-3 text-right">Acciones</th>
         </tr>
       </thead>
-      <tbody id="tabla-productos"></tbody>
+
+      <tbody id="tabla-productos"
+             class="divide-y divide-zinc-800">
+      </tbody>
     </table>
+
   </div>
 
   <!-- FORM -->
-  <div id="form-container" class="hidden mt-16 bg-white rounded-3xl shadow-lg p-12">
-    <h2 class="text-xl font-medium mb-10">Nuevo Producto</h2>
+  <div id="form-container"
+       class="hidden mt-16 bg-zinc-900 rounded-2xl shadow-2xl shadow-black/50
+              border border-zinc-800 p-12">
+
+    <h2 class="text-xl font-medium mb-10 text-white tracking-wide uppercase">
+      Nuevo Producto
+    </h2>
 
     <div class="grid md:grid-cols-2 gap-8">
+
       <input id="prod-nombre" type="text" placeholder="Nombre"
-        class="border rounded-2xl px-5 py-4">
+        class="bg-zinc-800 border border-zinc-700 rounded-xl px-5 py-4 text-white
+               focus:outline-none focus:ring-2 focus:ring-amber-500 transition">
 
       <input id="prod-talle" type="text" placeholder="Talle"
-        class="border rounded-2xl px-5 py-4">
+        class="bg-zinc-800 border border-zinc-700 rounded-xl px-5 py-4 text-white
+               focus:outline-none focus:ring-2 focus:ring-amber-500 transition">
 
       <input id="prod-precio" type="number" placeholder="Precio"
-        class="border rounded-2xl px-5 py-4">
+        class="bg-zinc-800 border border-zinc-700 rounded-xl px-5 py-4 text-white
+               focus:outline-none focus:ring-2 focus:ring-amber-500 transition">
 
       <input id="prod-stock" type="number" placeholder="Stock"
-        class="border rounded-2xl px-5 py-4">
+        class="bg-zinc-800 border border-zinc-700 rounded-xl px-5 py-4 text-white
+               focus:outline-none focus:ring-2 focus:ring-amber-500 transition">
 
       <input id="prod-imagen" type="file" accept="image/*"
-        class="border rounded-2xl px-5 py-4 bg-white">
+        class="bg-zinc-800 border border-zinc-700 rounded-xl px-5 py-4 text-zinc-400
+               file:bg-amber-500 file:text-black
+               file:border-0 file:px-4 file:py-2
+               file:rounded-lg file:cursor-pointer
+               hover:file:bg-amber-600 transition">
     </div>
 
     <textarea id="prod-descripcion" placeholder="Descripción"
-      class="w-full mt-8 border rounded-2xl px-5 py-4 h-32"></textarea>
+      class="w-full mt-8 bg-zinc-800 border border-zinc-700 rounded-xl
+             px-5 py-4 h-32 text-white
+             focus:outline-none focus:ring-2 focus:ring-amber-500 transition">
+    </textarea>
 
     <div class="flex justify-end mt-10 gap-4">
+
       <button onclick="cerrarFormulario()"
-        class="px-6 py-3 border rounded-xl text-sm hover:bg-stone-100 transition">
+        class="px-6 py-3 border border-zinc-700 rounded-xl text-sm
+               text-zinc-400 hover:bg-zinc-800 hover:text-white transition">
         Cancelar
       </button>
 
       <button onclick="guardarProducto()"
-        class="bg-neutral-900 text-white px-8 py-3 rounded-xl hover:bg-neutral-800 transition text-sm">
+        class="bg-amber-500 text-black px-8 py-3 rounded-xl
+               hover:bg-amber-600 transition text-sm
+               tracking-widest uppercase font-semibold">
         Guardar
       </button>
+
     </div>
+
   </div>
 
 </div>
+
 
 <script>
 
 const API = "http://localhost:3000/api";
 const urlParams = new URLSearchParams(window.location.search);
 const marcaId = urlParams.get("marcaId");
+
+let productoEditandoId = null; // 🔥 clave para saber si estamos editando
 
 document.addEventListener("DOMContentLoaded", () => {
   if (!marcaId) {
@@ -123,11 +165,18 @@ async function cargarProductos() {
         <td>${prod.talle}</td>
         <td>$${prod.precio}</td>
         <td>${prod.stock}</td>
-        <td class="text-right">
+        <td class="text-right space-x-3">
+
+          <button onclick="editarProducto('${prod._id}')"
+            class="text-blue-600 hover:underline text-xs">
+            Editar
+          </button>
+
           <button onclick="eliminarProducto('${prod._id}')"
             class="text-red-500 hover:underline text-xs">
             Eliminar
           </button>
+
         </td>
       </tr>
     `;
@@ -140,6 +189,16 @@ function abrirFormulario() {
 
 function cerrarFormulario() {
   document.getElementById("form-container").classList.add("hidden");
+
+  // Resetear formulario
+  document.getElementById("prod-nombre").value = "";
+  document.getElementById("prod-talle").value = "";
+  document.getElementById("prod-precio").value = "";
+  document.getElementById("prod-stock").value = "";
+  document.getElementById("prod-descripcion").value = "";
+  document.getElementById("prod-imagen").value = "";
+
+  productoEditandoId = null; // 🔥 salir del modo edición
 }
 
 async function guardarProducto() {
@@ -154,13 +213,37 @@ async function guardarProducto() {
   const imagen = document.getElementById("prod-imagen").files[0];
   if (imagen) formData.append("imagen", imagen);
 
-  await fetch(`${API}/productos`, {
-    method: "POST",
-    body: formData
-  });
+  if (productoEditandoId) {
+    // 🔥 MODO EDITAR
+    await fetch(`${API}/productos/${productoEditandoId}`, {
+      method: "PUT",
+      body: formData
+    });
+  } else {
+    // 🔥 MODO CREAR
+    await fetch(`${API}/productos`, {
+      method: "POST",
+      body: formData
+    });
+  }
 
   cerrarFormulario();
   cargarProductos();
+}
+
+async function editarProducto(id) {
+  const res = await fetch(`${API}/productos/${id}`);
+  const producto = await res.json();
+
+  productoEditandoId = id;
+
+  document.getElementById("prod-nombre").value = producto.nombre;
+  document.getElementById("prod-talle").value = producto.talle;
+  document.getElementById("prod-precio").value = producto.precio;
+  document.getElementById("prod-stock").value = producto.stock;
+  document.getElementById("prod-descripcion").value = producto.descripcion || "";
+
+  abrirFormulario();
 }
 
 async function eliminarProducto(id) {

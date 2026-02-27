@@ -6,25 +6,30 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-neutral-100 min-h-screen">
+<body class="bg-zinc-950 text-zinc-200 min-h-screen">
 
 <div class="max-w-5xl mx-auto py-16 px-6">
-  <div class="bg-white rounded-3xl shadow-xl p-12">
+
+  <div class="bg-zinc-900 rounded-2xl shadow-2xl shadow-black/50 border border-zinc-800 p-12">
 
     <div class="flex justify-between items-center mb-14">
+
       <div>
-        <h1 id="titulo-pagina" class="text-3xl font-semibold text-neutral-800 tracking-tight">
+        <h1 id="titulo-pagina"
+            class="text-3xl font-semibold text-white tracking-wider uppercase">
           Nueva Marca
         </h1>
-        <p class="text-sm text-neutral-500 mt-1">
+
+        <p class="text-sm text-zinc-400 mt-2 tracking-wide">
           Crea o edita una marca para la tienda
         </p>
       </div>
 
       <a href="admin.html"
-         class="text-sm text-neutral-500 hover:text-neutral-800 transition">
+         class="text-sm text-zinc-400 hover:text-amber-500 transition tracking-wide">
         ← Volver
       </a>
+
     </div>
 
     <!-- FORM -->
@@ -32,42 +37,65 @@
 
       <div class="grid md:grid-cols-2 gap-14">
 
+        <!-- Columna izquierda -->
         <div>
+
           <div class="mb-8">
-            <label class="block text-sm font-medium text-neutral-600 mb-3">
+            <label class="block text-sm font-medium text-zinc-400 mb-3 tracking-wide">
               Nombre de la marca
             </label>
+
             <input id="marca-nombre" type="text" required
-              class="w-full border border-neutral-300 rounded-2xl px-5 py-4">
+              class="w-full bg-zinc-800 border border-zinc-700
+                     rounded-xl px-5 py-4 text-white
+                     focus:outline-none focus:ring-2 focus:ring-amber-500
+                     transition">
           </div>
 
           <div>
-            <label class="block text-sm font-medium text-neutral-600 mb-3">
+            <label class="block text-sm font-medium text-zinc-400 mb-3 tracking-wide">
               Descripción
             </label>
+
             <textarea id="marca-descripcion"
-              class="w-full border border-neutral-300 rounded-2xl px-5 py-4 h-36 resize-none"></textarea>
+              class="w-full bg-zinc-800 border border-zinc-700
+                     rounded-xl px-5 py-4 h-36 resize-none text-white
+                     focus:outline-none focus:ring-2 focus:ring-amber-500
+                     transition"></textarea>
           </div>
+
         </div>
 
+        <!-- Columna derecha -->
         <div>
-          <label class="block text-sm font-medium text-neutral-600 mb-4">
+
+          <label class="block text-sm font-medium text-zinc-400 mb-4 tracking-wide">
             Logo
           </label>
 
-          <div class="bg-neutral-50 border rounded-2xl p-8 flex flex-col items-center justify-center mb-6">
-            <img id="logo-preview" class="h-32 object-contain">
+          <div class="bg-zinc-800 border border-zinc-700
+                      rounded-xl p-8 flex flex-col items-center justify-center mb-6">
+
+            <img id="logo-preview"
+                 class="h-32 object-contain opacity-80">
           </div>
 
           <input id="marca-logo" type="file"
-            class="block w-full text-sm text-neutral-600">
+            class="block w-full text-sm text-zinc-400
+                   file:bg-amber-500 file:text-black
+                   file:border-0 file:px-4 file:py-2
+                   file:rounded-lg file:cursor-pointer
+                   hover:file:bg-amber-600 transition">
+
         </div>
 
       </div>
 
       <div class="flex justify-end mt-14">
         <button type="submit" id="submit-btn"
-          class="bg-neutral-900 text-white px-10 py-4 rounded-2xl">
+          class="bg-amber-500 text-black px-10 py-4 rounded-xl
+                 tracking-widest uppercase font-semibold
+                 hover:bg-amber-600 transition duration-300">
           Crear Marca
         </button>
       </div>
@@ -75,6 +103,7 @@
     </form>
 
   </div>
+
 </div>
 
 <script>
