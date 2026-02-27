@@ -118,7 +118,7 @@ async function cargarProductos() {
       <div onclick='abrirModal(${JSON.stringify(prod)})'
            class="bg-white rounded-3xl shadow hover:shadow-lg transition cursor-pointer overflow-hidden">
 
-        <img src="http://localhost:3000/images/${prod.imagen}"
+        <img src="/images/${prod.imagen}"
              class="w-full h-48 object-cover">
 
         <div class="p-4">
@@ -134,7 +134,7 @@ function abrirModal(producto) {
   productoSeleccionado = producto;
 
   document.getElementById("modal-imagen").src =
-    `http://localhost:3000/images/${producto.imagen}`;
+    `/images/${producto.imagen}`;
   document.getElementById("modal-nombre").textContent = producto.nombre;
   document.getElementById("modal-precio").textContent =
     "$" + producto.precio;
