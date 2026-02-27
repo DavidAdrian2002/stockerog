@@ -190,7 +190,7 @@
       const data = await res.json();
       if (res.ok) {
         alert(editarId ? "Marca actualizada ✅" : "Marca creada ✅");
-        window.location.href = "dashboard.html";
+        window.location.href = "admin.html";
       } else {
         alert("Error al guardar marca ❌");
         console.log(data);
