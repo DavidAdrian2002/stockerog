@@ -1,28 +1,49 @@
 import express from "express";
 import Marca from "../models/Marca.js";
+import multer from "multer";
+import cloudinary from "../config/cloudinary.js";
+import fs from "fs";
 
 const router = express.Router();
 
-// Crear marca
-router.post("/", async (req, res) => {
+// Configuración temporal de multer
+const upload = multer({ dest: "temp/" });
+
+// 🔹 Crear marca con imagen
+router.post("/", upload.single("imagen"), async (req, res) => {
   try {
-    const { nombre, imagen, descripcion } = req.body;
+    const { nombre, descripcion } = req.body;
+
+    let imageUrl = "";
+
+    if (req.file) {
+      const result = await cloudinary.uploader.upload(req.file.path, {
+        folder: "storeckog_marcas",
+      });
+
+      imageUrl = result.secure_url;
+
+      // eliminar archivo temporal
+      fs.unlinkSync(req.file.path);
+    }
 
     const nuevaMarca = new Marca({
       nombre,
-      imagen,
+      imagen: imageUrl,
       descripcion,
     });
 
     await nuevaMarca.save();
 
     res.status(201).json(nuevaMarca);
+
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: "Error creando marca" });
   }
 });
 
-// Obtener todas las marcas
+// 🔹 Obtener todas las marcas
 router.get("/", async (req, res) => {
   try {
     const marcas = await Marca.find().sort({ createdAt: -1 });
@@ -32,6 +53,7 @@ router.get("/", async (req, res) => {
   }
 });
 
+// 🔹 Eliminar marca
 router.delete("/:id", async (req, res) => {
   try {
     await Marca.findByIdAndDelete(req.params.id);

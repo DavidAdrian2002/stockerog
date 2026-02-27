@@ -151,7 +151,7 @@
       .then(marca => {
         document.getElementById("marca-nombre").value = marca.nombre;
         document.getElementById("marca-descripcion").value = marca.descripcion || "";
-        logoPreview.src = `http:/uploads/${marca.imagen}`;
+        logoPreview.src = `${marca.imagen}`;
       })
       .catch(err => console.error("Error cargando marca:", err));
   }
