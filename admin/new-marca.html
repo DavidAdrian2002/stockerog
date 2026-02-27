@@ -146,12 +146,12 @@
     tituloPagina.textContent = "Editar Marca";
     submitBtn.textContent = "Guardar Cambios";
 
-    fetch(`http://localhost:3000/api/marcas/${editarId}`)
+    fetch(`http:/api/marcas/${editarId}`)
       .then(res => res.json())
       .then(marca => {
         document.getElementById("marca-nombre").value = marca.nombre;
         document.getElementById("marca-descripcion").value = marca.descripcion || "";
-        logoPreview.src = `http://localhost:3000/uploads/${marca.imagen}`;
+        logoPreview.src = `http:/uploads/${marca.imagen}`;
       })
       .catch(err => console.error("Error cargando marca:", err));
   }
@@ -169,7 +169,7 @@
       let res;
       if (editarId) {
         // Modo edición
-        res = await fetch(`http://localhost:3000/api/marcas/${editarId}`, {
+        res = await fetch(`http:/api/marcas/${editarId}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ nombre, descripcion, imagen })
@@ -180,7 +180,7 @@
           alert("Debes seleccionar un logo");
           return;
         }
-        res = await fetch("http://localhost:3000/api/marcas", {
+        res = await fetch("http:/api/marcas", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ nombre, descripcion, imagen })

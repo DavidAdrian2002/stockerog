@@ -77,7 +77,7 @@ const container = document.getElementById("marcas-container");
 // Función para cargar todas las marcas
 async function cargarMarcas() {
   try {
-    const res = await fetch("http://localhost:3000/api/marcas");
+    const res = await fetch("http:/api/marcas");
     const marcas = await res.json();
 
     container.innerHTML = "";
@@ -86,7 +86,7 @@ async function cargarMarcas() {
       container.innerHTML += `
         <div class="bg-white rounded-3xl shadow p-6 flex flex-col items-center text-center">
           
-          <img src="http://localhost:3000/uploads/${marca.imagen}"
+          <img src="http:/uploads/${marca.imagen}"
                class="h-20 object-contain mb-4"
                onerror="this.src='https://via.placeholder.com/100'">
 
