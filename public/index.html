@@ -157,22 +157,23 @@
 
       container.innerHTML = "";
 
-     marcas.forEach(marca => {
-  container.innerHTML += `
-    <a href="page.html?marcaId=${marca._id}"
-       class="bg-white rounded-3xl shadow p-6 flex items-center justify-center
-              hover:shadow-xl transition text-center">
-               <img src="/uploads/${marca.imagen}"
-           class="h-20 object-contain"
-           onerror="this.src='https://via.placeholder.com/120'">
+      marcas.forEach(marca => {
+        container.innerHTML += `
+          <a href="page.html?marcaId=${marca._id}"
+             class="bg-white rounded-3xl shadow p-6 flex items-center justify-center
+                    hover:shadow-xl transition text-center">
 
-      <span class="text-lg font-semibold tracking-wide">
-        ${marca.nombre}
-      </span>
+            <img src="${marca.imagen}"
+                 class="h-20 object-contain mb-3"
+                 onerror="this.src='https://via.placeholder.com/120'">
 
-    </a>
-  `;
-});
+            <span class="text-lg font-semibold tracking-wide">
+              ${marca.nombre}
+            </span>
+
+          </a>
+        `;
+      });
 
     } catch (error) {
       console.error("Error cargando marcas:", error);
@@ -180,28 +181,6 @@
   }
 
   cargarMarcas();
-</script>
-
-<script>
-  const form = document.getElementById("contact-form");
-
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    const nombre = form.querySelector("input[type='text']").value;
-    const consulta = form.querySelector("select").value;
-    const mensaje = form.querySelector("textarea").value;
-
-    const numero = "5493863573899"; // Código país Argentina +54 + 9 + número
-
-    const texto = `Hola, mi nombre es ${nombre}.
-Consulta: ${consulta || "No especificada"}
-Mensaje: ${mensaje}`;
-
-    const url = `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
-
-    window.open(url, "_blank");
-  });
 </script>
   <!-- Footer -->
   <footer class="py-10 text-center text-sm text-stone-500">
