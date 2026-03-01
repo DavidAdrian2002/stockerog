@@ -129,11 +129,9 @@
   const submitBtn = document.getElementById("submit-btn");
   const tituloPagina = document.getElementById("titulo-pagina");
 
-  // Obtener ID de la marca si estamos en modo edición
   const urlParams = new URLSearchParams(window.location.search);
   const editarId = urlParams.get("editar");
 
-  // Preview del logo
   logoInput.addEventListener("change", () => {
     const file = logoInput.files[0];
     if (file) {
@@ -141,7 +139,6 @@
     }
   });
 
-  // Si estamos editando, cargamos los datos
   if (editarId) {
     tituloPagina.textContent = "Editar Marca";
     submitBtn.textContent = "Guardar Cambios";
@@ -151,43 +148,48 @@
       .then(marca => {
         document.getElementById("marca-nombre").value = marca.nombre;
         document.getElementById("marca-descripcion").value = marca.descripcion || "";
-        logoPreview.src = `${marca.imagen}`;
+        logoPreview.src = marca.imagen;
       })
       .catch(err => console.error("Error cargando marca:", err));
   }
 
-  // Crear o editar marca
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const nombre = document.getElementById("marca-nombre").value;
     const descripcion = document.getElementById("marca-descripcion").value;
     const logoFile = logoInput.files[0];
-    const imagen = logoFile ? logoFile.name : logoPreview.src.split("/").pop(); // si no cambió el logo, usamos el existente
+
+    const formData = new FormData();
+    formData.append("nombre", nombre);
+    formData.append("descripcion", descripcion);
+
+    if (logoFile) {
+      formData.append("imagen", logoFile);
+    }
 
     try {
       let res;
+
       if (editarId) {
-        // Modo edición
         res = await fetch(`/api/marcas/${editarId}`, {
           method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ nombre, descripcion, imagen })
+          body: formData
         });
       } else {
-        // Modo creación
         if (!logoFile) {
           alert("Debes seleccionar un logo");
           return;
         }
+
         res = await fetch("/api/marcas", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ nombre, descripcion, imagen })
+          body: formData
         });
       }
 
       const data = await res.json();
+
       if (res.ok) {
         alert(editarId ? "Marca actualizada ✅" : "Marca creada ✅");
         window.location.href = "admin.html";
