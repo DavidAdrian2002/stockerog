@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SO</title>
+  <title>StoreckOg</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
+
+
 
 <body class="bg-zinc-950 text-zinc-200 scroll-smooth">
 
   <!-- Header -->
-  <header class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex justify-between items-center border-b border-zinc-800">
+  <header
+    class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex justify-between items-center border-b border-zinc-800">
     <h1 class="text-xl sm:text-2xl tracking-wider font-semibold text-white">
-      Stockerog
+      StoreckOg
     </h1>
 
     <!-- Nav desktop -->
@@ -25,7 +30,7 @@
 
   <!-- Hero -->
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
-    
+
     <div class="mb-10 sm:mb-14">
       <h2 class="text-3xl sm:text-4xl md:text-5xl font-light mb-4 text-white leading-tight">
         Streetwear que impone presencia
@@ -35,48 +40,46 @@
       </p>
     </div>
 
-    <!-- Scroll horizontal -->
-    <div class="flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory scrollbar-hide">
-
-      <div class="min-w-[260px] sm:min-w-[300px] md:min-w-[420px] snap-start">
-        <div class="rounded-2xl overflow-hidden shadow-2xl shadow-black/40">
-          <img src="../images/Scroll 1-1.jpg"
-               class="h-[300px] sm:h-[380px] md:h-[420px] w-full object-cover hover:scale-105 transition duration-500">
+    <!-- Swiper container -->
+    <div class="swiper mySwiper w-full h-80 sm:h-96 lg:h-[35rem] rounded-2xl shadow-2xl shadow-black/40">
+      <div class="swiper-wrapper">
+        <!-- Slides -->
+        <div class="swiper-slide">
+          <div class="aspect-[16/9] w-[100%] h-full ">
+            <img src="../images/scroll 5.png"
+              class="rounded-2xl shadow-2xl shadow-black/40 w-full h-full object-fit-cover">
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="aspect-[16/9] w-[100%] h-full">
+            <img src="../images/scroll 6.png"
+              class="rounded-2xl shadow-2xl shadow-black/40 w-full h-full object-fit-cover">
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="aspect-[16/9] w-[100%] h-full">
+            <img src="../images/scroll 7.png"
+              class="rounded-2xl shadow-2xl shadow-black/40 w-full h-full object-fit-cover">
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="aspect-[16/9] w-[100%] h-full">
+            <img src="../images/scroll 8.png"
+              class="rounded-2xl shadow-2xl shadow-black/40 w-full h-full object-fit-cover">
+          </div>
         </div>
       </div>
-
-      <div class="min-w-[260px] sm:min-w-[300px] md:min-w-[420px] snap-start">
-        <div class="rounded-2xl overflow-hidden shadow-2xl shadow-black/40">
-          <img src="../images/Scroll 2.jpg"
-               class="h-[300px] sm:h-[380px] md:h-[420px] w-full object-cover hover:scale-105 transition duration-500">
-        </div>
-      </div>
-
-      <div class="min-w-[260px] sm:min-w-[300px] md:min-w-[420px] snap-start">
-        <div class="rounded-2xl overflow-hidden shadow-2xl shadow-black/40">
-          <img src="../images/Scroll 3.jpg"
-               class="h-[300px] sm:h-[380px] md:h-[420px] w-full object-cover hover:scale-105 transition duration-500">
-        </div>
-      </div>
-
-      <div class="min-w-[260px] sm:min-w-[300px] md:min-w-[420px] snap-start">
-        <div class="rounded-2xl overflow-hidden shadow-2xl shadow-black/40">
-          <img src="../images/Scroll 4.jpg"
-               class="h-[300px] sm:h-[380px] md:h-[420px] w-full object-cover hover:scale-105 transition duration-500">
-        </div>
-      </div>
-
     </div>
   </section>
 
   <!-- Marcas -->
   <section id="marcas" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 border-t border-zinc-800">
     <h3 class="text-2xl sm:text-3xl font-light mb-10 sm:mb-12 text-white tracking-wide">
-      Marcas que trabajamos
+      Conocé un nuevo estilo para tus outfits.
     </h3>
 
     <div id="marcas-container"
-         class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 items-center">
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 items-center text-black">
     </div>
   </section>
 
@@ -102,24 +105,22 @@
       </p>
     </div>
 
-    <div class="bg-zinc-900 rounded-2xl shadow-2xl shadow-black/40 p-6 sm:p-10 max-w-2xl mx-auto border border-zinc-800">
+    <div
+      class="bg-zinc-900 rounded-2xl shadow-2xl shadow-black/40 p-6 sm:p-10 max-w-2xl mx-auto border border-zinc-800">
 
       <form id="contact-form" class="space-y-6">
 
         <div>
           <label class="block text-sm mb-2 text-zinc-300">Tu nombre</label>
-          <input type="text"
-                 class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-3
+          <input type="text" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-3
                         focus:outline-none focus:ring-2 focus:ring-amber-500 text-white text-sm sm:text-base"
-                 placeholder="Ej: Juan Pérez"
-                 required>
+            placeholder="Ej: Juan Pérez" required>
         </div>
 
         <div>
           <label class="block text-sm mb-2 text-zinc-300">Consulta rápida</label>
-          <select
-                  class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-3
-                         focus:outline-none focus:ring-2 focus:ring-amber-500 text-white text-sm sm:text-base">
+          <select class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-3
+            focus:outline-none focus:ring-2 focus:ring-amber-500 text-white text-sm sm:text-base">
             <option value="">Selecciona una opción</option>
             <option>¿Tienes este diseño disponible?</option>
             <option>¿Tienes este talle disponible?</option>
@@ -130,15 +131,12 @@
 
         <div>
           <label class="block text-sm mb-2 text-zinc-300">Mensaje</label>
-          <textarea rows="4"
-                    class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-3
+          <textarea rows="4" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-3
                            focus:outline-none focus:ring-2 focus:ring-amber-500 text-white text-sm sm:text-base"
-                    placeholder="Escribe tu mensaje aquí..."
-                    required></textarea>
+            placeholder="Escribe tu mensaje aquí..." required></textarea>
         </div>
 
-        <button type="submit"
-                class="w-full bg-amber-500 text-black py-3 rounded-xl
+        <button type="submit" class="w-full bg-amber-500 text-black py-3 rounded-xl
                        hover:bg-amber-600 transition text-xs sm:text-sm tracking-widest uppercase font-semibold">
           Enviar por WhatsApp
         </button>
@@ -148,17 +146,17 @@
   </section>
 
   <script>
-  const container = document.getElementById("marcas-container");
+    const container = document.getElementById("marcas-container");
 
-  async function cargarMarcas() {
-    try {
-      const res = await fetch("/api/marcas");
-      const marcas = await res.json();
+    async function cargarMarcas() {
+      try {
+        const res = await fetch("/api/marcas");
+        const marcas = await res.json();
 
-      container.innerHTML = "";
+        container.innerHTML = "";
 
-      marcas.forEach(marca => {
-        container.innerHTML += `
+        marcas.forEach(marca => {
+          container.innerHTML += `
           <a href="page.html?marcaId=${marca._id}"
              class="bg-white rounded-3xl shadow p-6 flex items-center justify-center
                     hover:shadow-xl transition text-center">
@@ -173,15 +171,37 @@
 
           </a>
         `;
-      });
+        });
 
-    } catch (error) {
-      console.error("Error cargando marcas:", error);
+      } catch (error) {
+        console.error("Error cargando marcas:", error);
+      }
     }
-  }
 
-  cargarMarcas();
-</script>
+    cargarMarcas();
+  </script>
+
+  <!-- Swiper JS - Carrusel -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    const swiper = new Swiper(".mySwiper", {
+      loop: true,
+      slidesPerView: "auto",
+      spaceBetween: 12, // ajusta el espacio entre imágenes
+      freeMode: true,   // activa el modo libre
+      freeModeMomentum: false, // evita frenadas
+      autoplay: {
+        delay: 0,       // sin pausa entre transiciones
+        disableOnInteraction: false,
+      },
+      speed: 5000,      // velocidad de desplazamiento (más alto = más lento y fluido)
+    });
+
+
+
+  </script>
+
+
   <!-- Footer -->
   <footer class="py-10 text-center text-sm text-stone-500">
     © 2026 D&A Development. Todos los derechos reservados.
@@ -189,4 +209,5 @@
 
 
 </body>
+
 </html>
