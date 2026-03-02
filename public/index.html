@@ -79,7 +79,7 @@
     </h3>
 
     <div id="marcas-container"
-      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 items-center text-black">
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 items-center text-black ">
     </div>
   </section>
 
@@ -90,7 +90,7 @@
         Calidad sin concesiones
       </h3>
       <p class="text-zinc-400 text-base sm:text-lg">
-        Trabajamos con marcas que marcan tendencia y elevan tu estilo urbano.
+        Trabajamos con prendas que marcan tendencia y elevan tu estilo urbano.
       </p>
     </div>
   </section>
@@ -159,10 +159,10 @@
           container.innerHTML += `
           <a href="page.html?marcaId=${marca._id}"
              class="bg-white rounded-3xl shadow p-6 flex items-center justify-center
-                    hover:shadow-xl transition text-center">
+                    hover:shadow-xl transition text-center grid">
 
             <img src="${marca.imagen}"
-                 class="h-20 object-contain mb-3"
+                 class="h-20 object-contain mb-3 mr-5 rounded-lg"
                  onerror="this.src='https://via.placeholder.com/120'">
 
             <span class="text-lg font-semibold tracking-wide">

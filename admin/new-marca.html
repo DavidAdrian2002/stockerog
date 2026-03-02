@@ -185,10 +185,10 @@
         const data = await res.json();
 
         if (res.ok) {
-          alert(editarId ? "Marca actualizada ✅" : "Marca creada ✅");
+          alert(editarId ? "Prenda actualizada ✅" : "Prenda creada ✅");
           window.location.href = "admin.html";
         } else {
-          alert("Error al guardar marca ❌");
+          alert("Error al guardar prenda ❌");
           console.log(data);
         }
 
