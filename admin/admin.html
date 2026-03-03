@@ -1,47 +1,47 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin · Stockerog</title>
+  <title>Admin · StoreckOg</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="bg-zinc-950 text-zinc-200 min-h-screen">
 
-<!-- HEADER -->
-<header class="bg-zinc-900 border-b border-zinc-800
+  <!-- HEADER -->
+  <header class="bg-zinc-900 border-b border-zinc-800
                px-4 sm:px-6 lg:px-10 py-4
                flex flex-col sm:flex-row
                justify-between items-center gap-3">
 
-  <h1 class="text-base sm:text-lg font-semibold tracking-widest text-white uppercase text-center sm:text-left">
-    Panel Administrador
-  </h1>
+    <h1 class="text-base sm:text-lg font-semibold tracking-widest text-white uppercase text-center sm:text-left">
+      Panel Administrador
+    </h1>
 
-  <span class="text-xs sm:text-sm text-zinc-400 tracking-wide">
-    Stockerog
-  </span>
+    <span class="text-xs sm:text-sm text-zinc-400 tracking-wide">
+      StoreckOg
+    </span>
 
-</header>
+  </header>
 
-<!-- MAIN -->
-<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-14 sm:py-20">
+  <!-- MAIN -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-14 sm:py-20">
 
-  <!-- TITULO -->
-  <div class="mb-12 sm:mb-16 text-center sm:text-left">
-    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-light mb-3 text-white tracking-wide leading-tight">
-      Marcas activas
-    </h2>
-    <p class="text-zinc-400 text-sm sm:text-base lg:text-lg max-w-2xl">
-      Estas marcas están visibles actualmente en la tienda.
-    </p>
-  </div>
+    <!-- TITULO -->
+    <div class="mb-12 sm:mb-16 text-center sm:text-left">
+      <h2 class="text-2xl sm:text-3xl lg:text-4xl font-light mb-3 text-white tracking-wide leading-tight">
+        Prendas activas
+      </h2>
+      <p class="text-zinc-400 text-sm sm:text-base lg:text-lg max-w-2xl">
+        Estas prendas estarán visibles actualmente en la tienda.
+      </p>
+    </div>
 
-  <!-- NUEVA MARCA -->
-  <div class="mb-16">
-    <a href="new-marca.html"
-      class="w-full sm:max-w-sm
+    <!-- NUEVA MARCA -->
+    <div class="mb-16">
+      <a href="new-marca.html" class="w-full sm:max-w-sm
              border-2 border-dashed border-zinc-700
              rounded-2xl p-8 sm:p-10
              flex items-center justify-center
@@ -50,40 +50,39 @@
              transition-all duration-300 cursor-pointer
              bg-zinc-900 hover:bg-zinc-800">
 
-      <span class="tracking-widest uppercase text-xs sm:text-sm font-semibold">
-        + Nueva marca
-      </span>
+        <span class="tracking-widest uppercase text-xs sm:text-sm font-semibold">
+          + Nueva Prenda
+        </span>
 
-    </a>
-  </div>
+      </a>
+    </div>
 
-  <!-- GRID MARCAS -->
-  <div id="marcas-container"
-       class="grid
+    <!-- GRID MARCAS -->
+    <div id="marcas-container" class="grid
               grid-cols-1
               sm:grid-cols-2
               md:grid-cols-3
               lg:grid-cols-4
               gap-6">
-  </div>
+    </div>
 
-</main>
+  </main>
 
 
 
-<script>
-const container = document.getElementById("marcas-container");
+  <script>
+    const container = document.getElementById("marcas-container");
 
-// Función para cargar todas las marcas
-async function cargarMarcas() {
-  try {
-    const res = await fetch("/api/marcas");
-    const marcas = await res.json();
+    // Función para cargar todas las marcas
+    async function cargarMarcas() {
+      try {
+        const res = await fetch("/api/marcas");
+        const marcas = await res.json();
 
-    container.innerHTML = "";
+        container.innerHTML = "";
 
-    marcas.forEach(marca => {
-      container.innerHTML += `
+        marcas.forEach(marca => {
+          container.innerHTML += `
         <div class="bg-white rounded-3xl shadow p-6 flex flex-col items-center text-center">
           
           <img src="${marca.imagen}"
@@ -114,33 +113,34 @@ async function cargarMarcas() {
           </div>
         </div>
       `;
-    });
+        });
 
-  } catch (error) {
-    console.error("Error cargando marcas:", error);
-  }
-}
+      } catch (error) {
+        console.error("Error cargando marcas:", error);
+      }
+    }
 
-// Función para eliminar marca
-async function eliminarMarca(id) {
-  const confirmar = confirm("¿Seguro que deseas eliminar esta marca?");
-  if (!confirmar) return;
+    // Función para eliminar marca
+    async function eliminarMarca(id) {
+      const confirmar = confirm("¿Seguro que deseas eliminar esta prenda?");
+      if (!confirmar) return;
 
-  try {
-    await fetch(`/api/marcas/${id}`, {
-      method: "DELETE"
-    });
+      try {
+        await fetch(`/api/marcas/${id}`, {
+          method: "DELETE"
+        });
 
-    cargarMarcas(); // Recarga la lista de marcas
-  } catch (error) {
-    console.error("Error eliminando marca:", error);
-    alert("Error eliminando la marca");
-  }
-}
+        cargarMarcas(); // Recarga la lista de marcas
+      } catch (error) {
+        console.error("Error eliminando marca:", error);
+        alert("Error eliminando la marca");
+      }
+    }
 
-// Cargar marcas al iniciar
-cargarMarcas();
-</script>
+    // Cargar marcas al iniciar
+    cargarMarcas();
+  </script>
 
 </body>
+
 </html>
