@@ -151,7 +151,7 @@ function cerrarModal() {
 function hacerPedido() {
   if (!productoSeleccionado) return;
 
-  const mensaje = `Hola, me interesa  ${productoSeleccionado.nombre} podrias decirme los talles disponibles?`;
+  const mensaje = `Hola, estoy interesado/a en ${productoSeleccionado.nombre} podrias decirme los talles disponibles?`;
   const telefono = "5493863573899"; 
 
   window.open(`https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`, "_blank");
