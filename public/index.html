@@ -178,6 +178,7 @@
       }
     }
 
+<<<<<<< HEAD
     cargarMarcas();
   </script>
 
@@ -202,6 +203,31 @@
   </script>
 
 
+=======
+  cargarMarcas();
+</script>
+<script>
+const form = document.getElementById("contact-form");
+
+form.addEventListener("submit", function(e){
+  e.preventDefault();
+
+  const nombre = form.querySelector("input").value;
+  const consulta = form.querySelector("select").value;
+  const mensaje = form.querySelector("textarea").value;
+
+  const numero = "5493863573899";
+
+  const texto = `Hola, soy ${nombre}.
+Consulta: ${consulta}
+Mensaje: ${mensaje}`;
+
+  const url = `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
+
+  window.open(url, "_blank");
+});
+</script>
+>>>>>>> a958dd0 (Funcion del formulario)
   <!-- Footer -->
   <footer class="py-10 text-center text-sm text-stone-500">
     © 2026 D&A Development. Todos los derechos reservados.
