@@ -31,13 +31,15 @@
   <!-- Hero -->
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
 
-    <div class="mb-10 sm:mb-14">
-      <h2 class="text-3xl sm:text-4xl md:text-5xl font-light mb-4 text-white leading-tight">
-        Streetwear que impone presencia
+    <div class="mb-10 sm:mb-14 text-center">
+      <h2
+        class="text-4xl sm:text-5xl md:text-7xl font-extrabold mb-4 text-white leading-tight tracking-widest uppercase">
+        Colección 2026
       </h2>
-      <p class="text-zinc-400 max-w-xl text-base sm:text-lg">
-        Selección exclusiva de marcas urbanas que combinan actitud, diseño y calidad premium.
-      </p>
+      <h3
+        class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-zinc-300 tracking-widest uppercase max-w-2xl mx-auto">
+        Exclusive Sh*t
+      </h3>
     </div>
 
     <!-- Swiper container -->
@@ -45,31 +47,12 @@
       <div class="swiper-wrapper">
         <!-- Slides -->
         <div class="swiper-slide">
-          <div class="aspect-[16/9] w-[100%] h-full ">
-            <img src="../images/scroll 5.png"
-              class="rounded-2xl shadow-2xl shadow-black/40 w-full h-full object-fit-cover">
+          <div class="w-full aspect-[16/9] overflow-hidden rounded-2xl shadow-2xl shadow-black/40">
+            <img src="../images/Imagen fija.jpeg" class="w-full h-full object-cover">
           </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="aspect-[16/9] w-[100%] h-full">
-            <img src="../images/scroll 6.png"
-              class="rounded-2xl shadow-2xl shadow-black/40 w-full h-full object-fit-cover">
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="aspect-[16/9] w-[100%] h-full">
-            <img src="../images/scroll 7.png"
-              class="rounded-2xl shadow-2xl shadow-black/40 w-full h-full object-fit-cover">
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="aspect-[16/9] w-[100%] h-full">
-            <img src="../images/scroll 8.png"
-              class="rounded-2xl shadow-2xl shadow-black/40 w-full h-full object-fit-cover">
-          </div>
+
         </div>
       </div>
-    </div>
   </section>
 
   <!-- Marcas -->
@@ -90,7 +73,8 @@
         Calidad sin Concesiones
       </h3>
       <p class="text-zinc-400 text-base sm:text-lg">
-        Estilo y resistencia en cada prenda. Materiales premium y confección experta para un streetwear que dura y destaca.
+        Estilo y resistencia en cada prenda. Materiales premium y confección experta para un streetwear que dura y
+        destaca.
       </p>
     </div>
   </section>
@@ -178,7 +162,7 @@
       }
     }
 
- 
+
     cargarMarcas();
   </script>
 
@@ -205,27 +189,27 @@
 
 
 
-<script>
-const form = document.getElementById("contact-form");
+  <script>
+    const form = document.getElementById("contact-form");
 
-form.addEventListener("submit", function(e){
-  e.preventDefault();
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
 
-  const nombre = form.querySelector("input").value;
-  const consulta = form.querySelector("select").value;
-  const mensaje = form.querySelector("textarea").value;
+      const nombre = form.querySelector("input").value;
+      const consulta = form.querySelector("select").value;
+      const mensaje = form.querySelector("textarea").value;
 
-  const numero = "5493863573899";
+      const numero = "5493863573899";
 
-  const texto = `Hola, soy ${nombre}.
+      const texto = `Hola, soy ${nombre}.
 Consulta: ${consulta}
 Mensaje: ${mensaje}`;
 
-  const url = `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
+      const url = `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
 
-  window.open(url, "_blank");
-});
-</script>
+      window.open(url, "_blank");
+    });
+  </script>
 
   <!-- Footer -->
   <footer class="py-10 text-center text-sm text-stone-500">
